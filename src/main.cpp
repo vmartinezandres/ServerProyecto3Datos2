@@ -1,5 +1,7 @@
 #include <iostream>
 
+using namespace std;
+
 int main() {
-    std::cout << "Hello Easy C++ project!" << std::endl;
+    cout << "Hola mundo!" << endl;
 }
