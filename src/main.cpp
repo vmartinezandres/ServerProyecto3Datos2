@@ -1,11 +1,10 @@
 #include <iostream>
-#include "../include/controllerNode.h"
+#include "../include/server.h"
 
 using namespace std;
 
 int main() {
-    controllerNode cn;
-    cn.addBook(1, "Pantalones Cortos", "Lara Rios", "books/pantalones.text");
-    //cn.addBook(2, "Harry Potter", "J. K. Rowling", "books/harry.text");
+    server myServer;
+    myServer.inicarServidor();
     return 0;
 }

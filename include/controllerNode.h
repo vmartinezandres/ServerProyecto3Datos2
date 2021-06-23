@@ -1,8 +1,10 @@
 #ifndef SERVERPROYECTO3DATOS2_CONTROLLERNODE_H
 #define SERVERPROYECTO3DATOS2_CONTROLLERNODE_H
 
-#include "../include/fileHandler.h"
 #include <string>
+
+#include "../include/fileHandler.h"
+#include "../include/jsonHandler.h"
 
 using namespace std;
 
@@ -10,14 +12,21 @@ class controllerNode {
 
 private:
     fileHandler fH;
+    jsonHandler jH;
     string jsonDb;
+    string jsonPetition;
+
+    string bookTitle;
+    string bookAuthor;
+    string bookPath;
 
     
 public:
     controllerNode();
     ~controllerNode();
+    string readPetition(string petition);
     void updateDb();
-    void addBook(int iD, string title, string author, string path);
+    string addBook();
 
 
 

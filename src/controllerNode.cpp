@@ -6,27 +6,44 @@ controllerNode::controllerNode(){
 controllerNode::~controllerNode(){
 }
 
-void controllerNode::updateDb() {
-    jsonDb = fH.readFile();
+string controllerNode::readPetition(string petition){
+    jH.cargar(petition);
+
+    jsonPetition = jH.buscarEnJSON("petition");
+
+    if (jsonPetition == "addBook") {
+        bookTitle = jH.buscarEnJSON("bookTitle");
+        bookAuthor = jH.buscarEnJSON("bookAuthor");
+        bookPath = jH.buscarEnJSON("bookPath");
+        return addBook();
+    }
+    else {
+        return "{\"serverAnswer\" : \"Error adding the book\"}";
+    } 
 }
 
-void controllerNode::addBook(int iD, string title, string author, string path) {
+void controllerNode::updateDb() {
+    jsonDb = fH.readFile();
+
+}
+
+string controllerNode::addBook() {
     updateDb();
     if (jsonDb == "\n") {
-        jsonDb = "{\"diskNodes\" : [{\"bookID\" : " + to_string(iD) 
-                                + ", \"bookTitle\" : \"" + title + "\""
-                                + ", \"bookAuthor\" : \"" + author + "\""
-                                + ", \"bookPath\" : \"" + path +"\"}]}";
+        jsonDb = "{\"diskNodes\" : [{\"bookTitle\" : \"" + bookTitle + "\""
+                                + ", \"bookAuthor\" : \"" + bookAuthor + "\""
+                                + ", \"bookPath\" : \"" + bookPath +"\"}]}";
 
         fH.writeFile(jsonDb);
     }
     else {
         jsonDb = jsonDb.substr(0, jsonDb.length() - 3);
-        jsonDb.append(", {\"bookID\" : " + to_string(iD) 
-                    + ", \"bookTitle\" : \"" + title + "\""
-                    + ", \"bookAuthor\" : \"" + author + "\""
-                    + ", \"bookPath\" : \"" + path +"\"}]}");
+        jsonDb.append(", {\"bookTitle\" : \"" + bookTitle + "\""
+                    + ", \"bookAuthor\" : \"" + bookAuthor + "\""
+                    + ", \"bookPath\" : \"" + bookPath +"\"}]}");
         
         fH.writeFile(jsonDb);
     }
+
+    return "{\"serverAnswer\" : \"Book added correctly\"}";
 }
