@@ -18,7 +18,7 @@ string controllerNode::readPetition(string petition){
         return addBook();
     }
     else {
-        return "{\"serverAnswer\" : \"Error adding the book\"}";
+        return hoffH.huffmanAlgorithm("Error adding the book");
     } 
 }
 
@@ -45,5 +45,5 @@ string controllerNode::addBook() {
         fH.writeFile(jsonDb);
     }
 
-    return "{\"serverAnswer\" : \"Book added correctly\"}";
+    return hoffH.huffmanAlgorithm("Book added correctly");
 }

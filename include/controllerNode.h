@@ -5,6 +5,7 @@
 
 #include "../include/fileHandler.h"
 #include "../include/jsonHandler.h"
+#include "../include/hoffmanHandler.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ class controllerNode {
 private:
     fileHandler fH;
     jsonHandler jH;
+    hoffmanHandler hoffH;
     string jsonDb;
     string jsonPetition;
 
